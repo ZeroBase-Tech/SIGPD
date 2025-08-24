@@ -19,23 +19,80 @@
     </a>
     
     <div class="tablero">
-        <div class="usuario">Usuario1</div>
-        <div class="casilla_compuesta" style="top:50px; left:50px;">1</div>
-        <div class="casilla_simple" style="top:65px; left:330px;">2</div>
-        <div class="casilla_compuesta" style="top:210px; left:50px;">3</div>
-        <div class="casilla_compuesta" style="top:210px; left:320px;">4</div>
-        <div class="casilla_compuesta" style="top:370px; left:50px;">5</div>
-        <div class="casilla_simple" style="top:375px; left:330px;">6</div>
-        <div class="casilla_rio" style="top:50px; left:220px;">7</div>
-    </div>
-    <div class="barra_inferior" >
-        <img src="/proyecto/public/assets/img/ficha-arch.png" class="ficha" draggable="true">
-        <img src="/proyecto/public/assets/img/ficha-debian.png" class="ficha" draggable="true">
-        <img src="/proyecto/public/assets/img/ficha-fedora.png" class="ficha" draggable="true">
-        <img src="/proyecto/public/assets/img/ficha-mint.png" class="ficha" draggable="true">
-        <img src="/proyecto/public/assets/img/ficha-ubuntu.png" class="ficha" draggable="true">
-        <img src="/proyecto/public/assets/img/ficha-suse.png" class="ficha" draggable="true">
-    </div>
+  <div class="usuario">Usuario1</div>
+
+  <div id="cas1" class="casilla casilla_compuesta" style="top:40px; left:30px;"></div>
+  <div id="cas2" class="casilla casilla_simple"    style="top:65px; left:330px;"></div>
+  <div id="cas3" class="casilla casilla_compuesta" style="top:210px; left:30px;"></div>
+  <div id="cas4" class="casilla casilla_compuesta" style="top:210px; left:310px;"></div>
+  <div id="cas5" class="casilla casilla_compuesta" style="top:370px; left:35px;"></div>
+  <div id="cas6" class="casilla casilla_simple"    style="top:375px; left:330px;"></div>
+  <div id="cas7" class="casilla casilla_rio"       style="top:30px; left:220px;"></div>
+</div>
+
+<div class="barra_inferior">
+  <img src="/proyecto/public/assets/img/ficha-arch.png"   class="ficha" id="ficha-arch"   draggable="true">
+  <img src="/proyecto/public/assets/img/ficha-debian.png" class="ficha" id="ficha-debian" draggable="true">
+  <img src="/proyecto/public/assets/img/ficha-fedora.png" class="ficha" id="ficha-fedora" draggable="true">
+  <img src="/proyecto/public/assets/img/ficha-mint.png"   class="ficha" id="ficha-mint"   draggable="true">
+  <img src="/proyecto/public/assets/img/ficha-ubuntu.png" class="ficha" id="ficha-ubuntu" draggable="true">
+  <img src="/proyecto/public/assets/img/ficha-suse.png"   class="ficha" id="ficha-suse"   draggable="true">
+</div>
+
+<script>
+  // Limites por casilla (id de la casilla: cantidad máxima)
+  const limites = {
+    cas1: 6,
+    cas2: 1,
+    cas3: 3,
+    cas4: 6,
+    cas6: 1,
+  };
+
+  // Activar drag en todas las fichas
+  const fichas = document.querySelectorAll('.ficha');
+  fichas.forEach(ficha => {
+    ficha.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('id', e.target.id);
+    });
+  });
+
+  // Seleccionamos todas las casillas
+  const casillas = document.querySelectorAll('.casilla');
+  casillas.forEach(casilla => {
+    casilla.addEventListener('dragover', e => e.preventDefault());
+
+    casilla.addEventListener('drop', e => {
+      e.preventDefault();
+
+      const id = e.dataTransfer.getData('id');
+      const ficha = document.getElementById(id);
+
+      // 🔹 Verificamos si la casilla tiene límite
+      const limite = limites[casilla.id]; // undefined si no tiene límite
+      const fichasEnCasilla = casilla.querySelectorAll('.ficha').length;
+
+      if (limite && fichasEnCasilla >= limite) {
+        alert(`Esta casilla ya alcanzó su límite de ${limite} fichas!`);
+        return;
+      }
+
+      // Si viene de la barra inferior, clonamos
+      if (ficha.parentElement.classList.contains('barra_inferior')) {
+        const copia = ficha.cloneNode(true);
+        copia.id = id + '-' + Date.now();
+        copia.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('id', e.target.id);
+        });
+        casilla.appendChild(copia);
+      } else {
+        // Si viene de otra casilla, la movemos
+        casilla.appendChild(ficha);
+      }
+    });
+  });
+</script>
+
 
     <li class="bg-transparent list-group-item border-0">
         <a class="btn btn-success w-100 fs-5" href="Cantidad.html">Atrás</a>

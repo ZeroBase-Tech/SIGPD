@@ -98,16 +98,38 @@ a {
   background-image: url("/proyecto/public/assets/img/Tablero.png");
   background-size: cover;
 }
+
+.casilla {
+  position: absolute;      /* mantiene la posición en el tablero */
+  display: flex;           /* activa flexbox */
+  align-items: center;
+  flex-direction: row;     /* acomoda horizontalmente */
+  gap: 2px;               
+}
+
+.casilla .ficha {
+  width: 30px;            
+  height: 30px;
+  object-fit: contain;
+}
+.casilla_simple .ficha{
+  width: 70px;             
+  height: 70px;
+  object-fit: contain;
+}
+
 .casilla_simple {
   position: absolute;
+  justify-content: center;
+  align-items: center;
   width: 80px;
   height: 80px;
-  border: 2px dashed red; 
+  border: 2px dashed red;
 }
 .casilla_compuesta{
   position: absolute;
-  width: 120px;
-  height: 80px;
+  width: 160px;
+  height: 100px;
   border: 2px dashed red; 
 }.casilla_rio{
   position: absolute;
@@ -145,12 +167,11 @@ z-index: -1;
 .ficha { 
   width: 60px;
   object-fit: contain;
-  cursor: grab;
   user-select: none;
-  -webkit-user-drag: none;
   transition: transform 0.25s;
 }
 
 .ficha:hover {
   transform: scale(1.25);
 }
+
