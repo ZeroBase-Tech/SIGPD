@@ -17,16 +17,16 @@
 
     <div class="mb-3">
 
-      <a href="inicio.html" class="text-decoration-none">
-        <h1 class="blinker-semibold">DraftoTux</h1>
-      </a>
+      <a href="../../public/index.php" class="text-decoration-none">
+      <h1 class="blinker-semibold">DraftoTux</h1>
+    </a>
     </div>
 
     <div class="card text-white rounded-4 py-2 w-100" style="max-width: 28rem;">
       
       <ul class="list-group">
         <li class="bg-transparent list-group-item border-0">
-          <a class="btn btn-outline-light w-100 fs-5" href="Cantidad.html">Jugar</a>
+          <a class="btn btn-outline-light w-100 fs-5" href="Cantidad.php">Jugar</a>
         </li>
 
         <li class="bg-transparent list-group-item border-0">

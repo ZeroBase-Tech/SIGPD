@@ -63,7 +63,7 @@
       </table>
 
       <div class="d-grid mt-2">
-        <a href="Menu.html" class="btn btn-success fs-5">Atrás</a>
+        <a href="Menu.php" class="btn btn-success fs-5">Atrás</a>
       </div>
     </div>
 

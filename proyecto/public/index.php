@@ -1,3 +1,16 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "draftotux";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,12 +22,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../public/css/estilos.css">
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body class="bg-dark text-white">
 
-  <div id="background-blur" style="background-image: url('../../public/assets/img/Fondo.png');"></div>
+  <div id="background-blur" style="background-image: url('assets/img/Fondo.png');"></div>
 
   <div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center px-3">
 
@@ -26,7 +39,7 @@
       </p>
 
       <div class="d-grid mt-3">
-        <a href="Menu.html" class="btn btn-success fs-5">¡Comenzar Juego!</a>
+        <a href="../app/views/menu.php" class="btn btn-success fs-5">¡Comenzar Juego!</a>
       </div>
 
     </div>
