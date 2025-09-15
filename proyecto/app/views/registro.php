@@ -7,6 +7,7 @@ $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['usuario'];
     $password = $_POST['contrasena'];
+    $nombre = $_POST['nombre'];
     $confirmar = $_POST['confirmar_contrasena'];
 
     if ($password !== $confirmar) {
@@ -23,9 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             //$hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare("INSERT INTO Jugador (usuario, contraseña) VALUES (:usuario, :password)");
-            $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':password', $password);
+            $stmt = $pdo->prepare("INSERT INTO Jugador (usuario, nombre, contraseña) VALUES (:usuario, :nombre, :password)");
+$stmt->bindParam(':usuario', $usuario);
+$stmt->bindParam(':nombre', $nombre);
+$stmt->bindParam(':password', $password);
             //$stmt->bindParam(':password', $hash);
             $stmt->execute();
 
