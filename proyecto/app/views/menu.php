@@ -34,7 +34,7 @@
         </li>
 
         <li class="bg-transparent list-group-item border-0">
-          <a class="btn btn-success w-100 fs-5" href="inicio.html">Atrás</a>
+          <a class="btn btn-success w-100 fs-5" href="../../public/index.php">Atrás</a>
         </li>
       </ul>
     </div>
