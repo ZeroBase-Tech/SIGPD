@@ -8,12 +8,6 @@ CREATE TABLE Jugador (
     contraseña VARCHAR(255) NOT NULL
 );
 
-INSERT INTO Jugador (usuario, nombre, contraseña) VALUES
-('admin', 'Administrador', 'admin'),
-('Nico', 'Nicolas Rodriguez', '1234'),
-('Orro', 'Geronimo Orro', '1234'),
-('MaxiVPI', 'Maximiliano Lopez', '1234');
-
 CREATE TABLE Partida (
     id_partida INT PRIMARY KEY AUTO_INCREMENT,
     fecha_inicio DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -21,16 +15,35 @@ CREATE TABLE Partida (
     modo ENUM('seguimiento', 'digital') DEFAULT 'seguimiento'
 );
 
-INSERT INTO Tablero (puntos, id_partida) VALUES
-(0, 1),
-(10, 2);
-
 CREATE TABLE Tablero (
     id_tablero INT PRIMARY KEY AUTO_INCREMENT,
     puntos INT DEFAULT 0,
     id_partida INT UNIQUE,
     FOREIGN KEY (id_partida) REFERENCES Partida(id_partida)
 );
+
+CREATE TABLE Movimiento (
+    id_movimiento INT PRIMARY KEY AUTO_INCREMENT,
+    ronda INT NOT NULL,
+    tipo ENUM('blanco', 'verde', 'violeta', 'naranja', 'azul', 'rojo') NOT NULL,
+    lugar ENUM('bosque', 'prado', 'amor', 'trio', 'rey', 'isla', 'rio') NOT NULL,
+    id_tablero INT,
+    FOREIGN KEY (id_tablero) REFERENCES Tablero(id_tablero)
+);
+
+INSERT INTO Jugador (usuario, nombre, contraseña) VALUES
+('admin', 'Administrador', 'admin'),
+('Nico', 'Nicolas Rodriguez', '1234'),
+('Orro', 'Geronimo Orro', '1234'),
+('MaxiVPI', 'Maximiliano Lopez', '1234');
+
+INSERT INTO Partida (fecha_inicio, estado, modo) VALUES
+('2025-09-14 00:32:16', 'en curso', 'seguimiento'),
+('2025-09-14 00:32:16', 'en curso', 'digital');
+
+INSERT INTO Tablero (puntos, id_partida) VALUES
+(0, 1),
+(10, 2);
 
 INSERT INTO Movimiento (ronda, tipo, lugar, id_tablero) VALUES
 (1, 'blanco', 'bosque', 1),
@@ -69,12 +82,3 @@ INSERT INTO Movimiento (ronda, tipo, lugar, id_tablero) VALUES
 (34, 'naranja', 'trio', 2),
 (35, 'azul', 'rey', 2),
 (36, 'rojo', 'isla', 2);
-
-CREATE TABLE Movimiento (
-    id_movimiento INT PRIMARY KEY AUTO_INCREMENT,
-    ronda INT NOT NULL,
-    tipo ENUM('blanco', 'verde', 'violeta', 'naranja', 'azul', 'rojo') NOT NULL,
-    lugar ENUM('bosque', 'prado', 'amor', 'trio', 'rey', 'isla', 'rio') NOT NULL,
-    id_tablero INT,
-    FOREIGN KEY (id_tablero) REFERENCES Tablero(id_tablero)
-);

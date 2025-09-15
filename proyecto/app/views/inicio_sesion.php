@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($resultado && password_verify($password, $resultado['contraseña'])) {
+    if ($resultado && $password === $resultado['contraseña']) {
+    //if ($resultado && password_verify($password, $resultado['contraseña'])) {
         $_SESSION['ultimo_jugador'] = $resultado['usuario'];
         header("Location: Cantidad.php"); 
         exit;

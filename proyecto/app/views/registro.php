@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $pdo = Database::getInstancia()->getConexion();
 
-        // Verificar si el usuario ya existe
         $stmt = $pdo->prepare("SELECT * FROM Jugador WHERE usuario = :usuario");
         $stmt->bindParam(':usuario', $usuario);
         $stmt->execute();
@@ -22,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch(PDO::FETCH_ASSOC)) {
             $error = "El usuario ya existe.";
         } else {
-            // Guardar contraseña segura
-            $hash = password_hash($password, PASSWORD_DEFAULT);
+            //$hash = password_hash($password, PASSWORD_DEFAULT);
 
             $stmt = $pdo->prepare("INSERT INTO Jugador (usuario, contraseña) VALUES (:usuario, :password)");
             $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':password', $hash);
+            $stmt->bindParam(':password', $password);
+            //$stmt->bindParam(':password', $hash);
             $stmt->execute();
 
             $success = "Usuario registrado con éxito.";
