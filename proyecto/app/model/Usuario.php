@@ -13,5 +13,4 @@ class Usuario {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Otros métodos CRUD...
 }

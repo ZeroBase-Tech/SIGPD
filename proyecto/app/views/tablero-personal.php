@@ -29,13 +29,13 @@ $nombre_jugador = $jugadores[$jugador_index] ?? "Jugador " . ($jugador_index + 1
 
         <div class="tablero" style="background-image: url('../../public/assets/img/Tablero.png');">
             <div class="usuario"><?= htmlspecialchars($nombre_jugador) ?></div>
-            <div id="cas1" class="casilla casilla_compuesta" style="top:40px; left:30px;"></div>
-            <div id="cas2" class="casilla casilla_simple" style="top:65px; left:330px;"></div>
-            <div id="cas3" class="casilla casilla_compuesta" style="top:210px; left:30px;"></div>
-            <div id="cas4" class="casilla casilla_compuesta" style="top:210px; left:310px;"></div>
-            <div id="cas5" class="casilla casilla_compuesta" style="top:370px; left:35px;"></div>
-            <div id="cas6" class="casilla casilla_simple" style="top:375px; left:330px;"></div>
-            <div id="cas7" class="casilla casilla_rio" style="top:30px; left:220px;"></div>
+            <div id="Semejanza" class="casilla casilla_compuesta" style="top:40px; left:30px;"></div>
+            <div id="Rey" class="casilla casilla_simple" style="top:65px; left:330px;"></div>
+            <div id="Trio" class="casilla casilla_compuesta" style="top:210px; left:30px;"></div>
+            <div id="Diferencia" class="casilla casilla_compuesta" style="top:210px; left:310px;"></div>
+            <div id="Amor" class="casilla casilla_compuesta" style="top:370px; left:35px;"></div>
+            <div id="Isla" class="casilla casilla_simple" style="top:375px; left:330px;"></div>
+            <div id="Rio" class="casilla casilla_rio" style="top:30px; left:220px;"></div>
         </div>
 
         <div class="barra_inferior mt-3">
@@ -53,49 +53,101 @@ $nombre_jugador = $jugadores[$jugador_index] ?? "Jugador " . ($jugador_index + 1
     </div>
 
     <script>
-        // Drag & drop de fichas
-        const limites = {
-            cas1: 6,
-            cas2: 1,
-            cas3: 3,
-            cas4: 6,
-            cas6: 1
-        };
+        let Diferencia = new Array(6);
+  let Igualdad;
+  let Trio;
+  // Limites por casilla (id de la casilla: cantidad máxima)
+  const limites = {
+    Semejanza: 6,
+    Rey: 1,
+    Trio: 3,
+    Diferencia: 6,
+    Isla: 1,
+  };
 
-        const fichas = document.querySelectorAll('.ficha');
-        fichas.forEach(ficha => {
-            ficha.addEventListener('dragstart', e => {
-                e.dataTransfer.setData('id', e.target.id);
-            });
+  // Activar drag en todas las fichas
+  const fichas = document.querySelectorAll('.ficha');
+  fichas.forEach(ficha => {
+    ficha.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('id', e.target.id);
+    });
+  });
+
+  // Seleccionamos todas las casillas
+  const casillas = document.querySelectorAll('.casilla');
+  casillas.forEach(casilla => {
+
+    casilla.addEventListener('dragover', e => e.preventDefault());
+
+    casilla.addEventListener('drop', e => {
+      e.preventDefault();
+      
+      const tipo = e.dataTransfer.getData('id');
+      const ficha = document.getElementById(tipo);
+
+      const limite = limites[casilla.id]; // undefined si no tiene límite
+      const fichasEnCasilla = casilla.querySelectorAll('.ficha').length;
+
+      if ( fichasEnCasilla && casilla.id == "Diferencia" ){
+        for( let i = 0; i < Diferencia.length; i++ ){
+          if( Diferencia[i] == ficha.id ){
+            alert(`${ficha.id} ya fue colocado en la casilla`);
+            return;
+          }
+        }
+      }
+
+      if ( !fichasEnCasilla && casilla.id == "Semejanza" ) {
+        Igualdad = ficha.id;
+      }
+      if ( !fichasEnCasilla && casilla.id == "Trio" ) {
+        Trio = ficha.id;
+      }
+      if ( casilla.id == "Diferencia" ) {
+        Diferencia[fichasEnCasilla] = ficha.id;
+      }
+
+      //Rechazar ficha si 
+        // Maximo numero de fichas en la casilla
+        //Tipo de ficha incorrecto 
+      if ( fichasEnCasilla >= limite ) {
+        alert(`Esta casilla ya alcanzó su límite de ${limite} fichas!`);
+        return;
+      }
+      if ( fichasEnCasilla && casilla.id == "Semejanza" ) {
+        if ( Igualdad != ficha.id ) {
+          alert(`Solo ${Igualdad} pueden colocarse en esta castilla`);
+          return;
+        }
+      }
+      if ( fichasEnCasilla && casilla.id == "Trio" ) {
+        if ( Trio != ficha.id ) {
+          alert(`Solo ${Trio} pueden colocarse en esta castilla`);
+          return;
+        }
+      }
+
+      // Si viene de la barra inferior, clonamos
+      if (ficha.parentElement.classList.contains('barra_inferior')) {
+        const copia = ficha.cloneNode(true);
+        copia.id = tipo + '-' + Date.now();
+        copia.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('id', e.target.id);
         });
+        casilla.appendChild(copia);
+      } else {
+        // Si viene de otra casilla, la movemos
+        casilla.appendChild(ficha);
+      }
+      
+      //Informacion de fondo
+      console.log("Casilla: " + casilla.id);
+      console.log("Limite: " + limite);
+      console.log("Num Fichas: " + fichasEnCasilla);
+      console.log("Ficha: " + ficha.id);  
 
-        const casillas = document.querySelectorAll('.casilla');
-        casillas.forEach(casilla => {
-            casilla.addEventListener('dragover', e => e.preventDefault());
-            casilla.addEventListener('drop', e => {
-                e.preventDefault();
-                const id = e.dataTransfer.getData('id');
-                const ficha = document.getElementById(id);
-
-                const limite = limites[casilla.id];
-                const fichasEnCasilla = casilla.querySelectorAll('.ficha').length;
-                if (limite && fichasEnCasilla >= limite) {
-                    alert(`Esta casilla ya alcanzó su límite de ${limite} fichas!`);
-                    return;
-                }
-
-                if (ficha.parentElement.classList.contains('barra_inferior')) {
-                    const copia = ficha.cloneNode(true);
-                    copia.id = id + '-' + Date.now();
-                    copia.addEventListener('dragstart', e => {
-                        e.dataTransfer.setData('id', e.target.id);
-                    });
-                    casilla.appendChild(copia);
-                } else {
-                    casilla.appendChild(ficha);
-                }
-            });
-        });
+    });
+  });
     </script>
 
 </body>
