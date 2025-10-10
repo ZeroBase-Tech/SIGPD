@@ -29,14 +29,14 @@ if (isset($_SESSION['ultimo_jugador'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draftotux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../public/css/estilos.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
 </head>
 
 <body class="bg-dark">
 
-  <div id="background-blur" style="background-image: url('../../public/assets/img/Fondo.png');"></div>
+  <div id="background-blur" style="background-image: url('public/assets/img/Fondo.png');"></div>
   <div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center px-3">
-    <a href="../../public/index.php" class="text-decoration-none">
+    <a href="index.php?ruta=start" class="text-decoration-none">
       <h1 class="blinker-semibold">DraftoTux</h1>
     </a>
 
@@ -48,9 +48,9 @@ if (isset($_SESSION['ultimo_jugador'])) {
         ?>
           <div class="jugador-card col-12 col-sm-6">
             <p class="close-btn">X</p>
-            <a href="inicio_sesion.php">
+            <a href="index.php?ruta=LogIn">
               <div class="jugador-card2">
-                <img src="../../public/assets/img/tux.png">
+                <img src="public/assets/img/tux.png">
                 <div class="add-usuario">+</div>
               </div>
             </a>
@@ -64,12 +64,12 @@ if (isset($_SESSION['ultimo_jugador'])) {
           <button class="btn btn-outline-light">Modo Digital</button>
         </div>
         <div class="col-5">
-          <a class="btn btn-outline-light" href="tableros.php">Modo Seguimiento</a>
+          <a class="btn btn-outline-light" href="index.php?ruta=tableros">Modo Seguimiento</a>
         </div>
       </div>
     </div>
     <div class="py-3">
-      <a class="btn btn-success w-100 fs-5" href="menu.php">Atrás</a>
+      <a class="btn btn-success w-100 fs-5" href="index.php?ruta=Home">Atrás</a>
     </div>
   </div>
 </body>

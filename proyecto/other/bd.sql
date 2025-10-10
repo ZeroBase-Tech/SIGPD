@@ -1,51 +1,61 @@
 CREATE DATABASE IF NOT EXISTS draftotux;
 USE draftotux;
 
-CREATE TABLE Jugador (
+CREATE TABLE IF NOT EXISTS Jugador (
     id_jugador INT PRIMARY KEY AUTO_INCREMENT,
     usuario VARCHAR(50) UNIQUE NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
+    contraseña VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Partida (
+CREATE TABLE IF NOT EXISTS Partida (
     id_partida INT PRIMARY KEY AUTO_INCREMENT,
     fecha_inicio DATETIME DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('en curso', 'finalizada') DEFAULT 'en curso',
     modo ENUM('seguimiento', 'digital') DEFAULT 'seguimiento'
 );
 
-CREATE TABLE Tablero (
+CREATE TABLE IF NOT EXISTS Tablero (
     id_tablero INT PRIMARY KEY AUTO_INCREMENT,
     puntos INT DEFAULT 0,
-    id_partida INT UNIQUE,
+    id_jugador INT NOT NULL,
+    id_partida INT NOT NULL,
+    FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador),
     FOREIGN KEY (id_partida) REFERENCES Partida(id_partida)
 );
 
-CREATE TABLE Movimiento (
+CREATE TABLE IF NOT EXISTS Movimiento (
     id_movimiento INT PRIMARY KEY AUTO_INCREMENT,
     ronda INT NOT NULL,
     tipo ENUM('blanco', 'verde', 'violeta', 'naranja', 'azul', 'rojo') NOT NULL,
     lugar ENUM('bosque', 'prado', 'amor', 'trio', 'rey', 'isla', 'rio') NOT NULL,
-    id_tablero INT,
+    id_tablero INT NOT NULL,
     FOREIGN KEY (id_tablero) REFERENCES Tablero(id_tablero)
 );
 
-INSERT INTO Jugador (usuario, nombre, contraseña) VALUES
+CREATE TABLE IF NOT EXISTS Juega(
+    id_partida INT NOT NULL,
+    id_jugador INT NOT NULL,
+    PRIMARY KEY (id_partida, id_jugador),
+    FOREIGN KEY (id_partida) REFERENCES Partida(id_partida),
+    FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador)
+);
+
+INSERT INTO IF NOT EXISTS Jugador (usuario, nombre, contraseña) VALUES
 ('admin', 'Administrador', 'admin'),
 ('Nico', 'Nicolas Rodriguez', '1234'),
 ('Orro', 'Geronimo Orro', '1234'),
 ('MaxiVPI', 'Maximiliano Lopez', '1234');
 
-INSERT INTO Partida (fecha_inicio, estado, modo) VALUES
+INSERT INTO IF NOT EXISTS Partida (fecha_inicio, estado, modo) VALUES
 ('2025-09-14 00:32:16', 'en curso', 'seguimiento'),
 ('2025-09-14 00:32:16', 'en curso', 'digital');
 
-INSERT INTO Tablero (puntos, id_partida) VALUES
-(0, 1),
-(10, 2);
+INSERT INTO IF NOT EXISTS Tablero (puntos, id_jugador, id_partida) VALUES
+(0, 1, 1),
+(10, 2, 2);
 
-INSERT INTO Movimiento (ronda, tipo, lugar, id_tablero) VALUES
+INSERT INTO IF NOT EXISTS Movimiento (ronda, tipo, lugar, id_tablero) VALUES
 (1, 'blanco', 'bosque', 1),
 (2, 'verde', 'prado', 1),
 (3, 'violeta', 'amor', 1),

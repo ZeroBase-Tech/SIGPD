@@ -31,7 +31,7 @@ $jugadores = $_SESSION['jugadores'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DraftoTux - Tableros</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../public/css/estilos.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
   <style>
     .tablero-card {
       position: relative;
@@ -67,11 +67,11 @@ $jugadores = $_SESSION['jugadores'];
 
 <body class="bg-dark">
 
-  <div id="background-blur" style="background-image: url('../../public/assets/img/Fondo.png');"></div>
+  <div id="background-blur" style="background-image: url('public/assets/img/Fondo.png');"></div>
 
 
   <div class="container py-4 text-center">
-    <a href="../../public/index.php" class="text-decoration-none">
+    <a href="public/index.php" class="text-decoration-none">
       <h1 class="blinker-semibold">DraftoTux</h1>
     </a>
 
@@ -79,15 +79,15 @@ $jugadores = $_SESSION['jugadores'];
       <p class="text-white">No hay jugadores activos.</p>
     <?php else: ?>
       <?php foreach ($jugadores as $index => $nombre): ?>
-        <div class="tablero-card" style="background-image: url('../../public/assets/img/Tablero.png');">
+        <div class="tablero-card" style="background-image: url('public/assets/img/Tablero.png');">
           <div class="nombre-jugador"><?= htmlspecialchars($nombre) ?></div>
-          <a href="tablero-personal.php?jugador=<?= $index ?>" class="btn btn-success">Ver</a>
+          <a href="index.php?ruta=tableros jugador=<?= $index ?>" class="btn btn-success">Ver</a>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
 
     <div class="py-3 mt-4">
-      <a class="btn btn-success fs-5" href="Cantidad.php">Atrás</a>
+      <a class="btn btn-success fs-5" href="index.php?ruta=cantidad">Atrás</a>
       <form method="post" style="display:inline-block; margin-left:10px;">
         <button type="submit" name="finalizar_partida" class="btn btn-danger fs-5">
             Partida Finalizada

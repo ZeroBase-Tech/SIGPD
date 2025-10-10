@@ -6,18 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draftotux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../public/css/estilos.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
 </head>
 
 <body class="bg-dark">
   
-  <div id="background-blur" style="background-image: url('../../public/assets/img/Fondo.png');"></div>
+  <div id="background-blur" style="background-image: url('public/assets/img/Fondo.png');"></div>
 
   <div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center px-3">
 
     <div class="mb-3">
 
-      <a href="../../public/index.php" class="text-decoration-none">
+      <a href="index.php?ruta=start" class="text-decoration-none">
       <h1 class="blinker-semibold">DraftoTux</h1>
     </a>
     </div>
@@ -26,15 +26,15 @@
       
       <ul class="list-group">
         <li class="bg-transparent list-group-item border-0">
-          <a class="btn btn-outline-light w-100 fs-5" href="Cantidad.php">Jugar</a>
+          <a class="btn btn-outline-light w-100 fs-5" href="index.php?ruta=cantidad">Jugar</a>
         </li>
 
         <li class="bg-transparent list-group-item border-0">
-          <a class="btn btn-outline-light w-100 fs-5" href="opciones.html">Opciones</a>
+          <a class="btn btn-outline-light w-100 fs-5" href="index.php?ruta=opciones">Opciones</a>
         </li>
 
         <li class="bg-transparent list-group-item border-0">
-          <a class="btn btn-success w-100 fs-5" href="../../public/index.php">Atrás</a>
+          <a class="btn btn-success w-100 fs-5" href="index.php?ruta=start">Atrás</a>
         </li>
       </ul>
     </div>

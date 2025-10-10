@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once __DIR__ . '/../model/Database.php';
+/*session_start();
+require_once __DIR__ . 'app/model/Database.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Usuario o contraseña incorrectos";
     }
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draftotux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../public/css/estilos.css">
+  <link rel="stylesheet" href="public/css/estilos.css">
 </head>
 
 <body class="bg-dark">
 
-  <div id="background-blur" style="background-image: url('../../public/assets/img/Fondo.png');"></div>
+  <div id="background-blur" style="background-image: url('public/assets/img/Fondo.png');"></div>
 
   <div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center ">
-    <a href="../../public/index.php" class="text-decoration-none">
+    <a href="public/index.php" class="text-decoration-none">
       <h1 class="blinker-semibold">DraftoTux</h1>
     </a>
 
@@ -71,9 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
 
       <div class="row mt-4">
-        <a href="Cantidad.php" class="col-6 text-start text-decoration-none">Atras</a>
+        <a href="index.php?ruta=cantidad" class="col-6 text-start text-decoration-none">Atras</a>
 
-        <a href="registro.php" class=" col-6 text-end text-decoration-none">Registrar</a>
+        <a href="index.php?ruta=Register" class=" col-6 text-end text-decoration-none">Registrar</a>
       </div>
     </div>
 
