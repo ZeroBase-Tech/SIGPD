@@ -42,7 +42,6 @@ public function login() {
         $resultado = $usuarioModel->verifyLogin($usuario, $password);
 
         if ($resultado) {
-                session_start();
 
                 // Crear array de jugadores si no existe
                 if (!isset($_SESSION['jugadores'])) {
