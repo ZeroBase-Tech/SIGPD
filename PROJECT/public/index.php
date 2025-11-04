@@ -4,6 +4,7 @@ require_once __DIR__ . '/../app/model/Database.php';
 require_once __DIR__ . '/../app/model/Usuario.php';
 require_once __DIR__ . '/../app/controller/UsuarioController.php';
 require_once __DIR__ . '/../app/controller/JugadorController.php';
+require_once __DIR__ . '/../app/controller/TableroController.php';
 
 
 // Front Controller
@@ -11,6 +12,8 @@ require_once __DIR__ . '/../app/controller/JugadorController.php';
 $ruta = $_GET['ruta'] ?? 'Start'; 
 
 $usuarioController = new UsuarioController();
+$tableroController = new TableroController();
+$jugadorController = new JugadorController();
 
 switch ($ruta) {
     case 'Start':
@@ -20,7 +23,6 @@ switch ($ruta) {
         require_once __DIR__ . '/../app/views/menu.php';
         break;
     case 'Jugadores':
-	$jugadorController = new JugadorController();
         if (isset($_GET['eliminar'])) {
         $jugadorController->eliminarJugador((int)$_GET['eliminar']);
     } else {
@@ -34,7 +36,7 @@ switch ($ruta) {
 	require_once __DIR__ . '/../app/views/resultados.php';
 	break;
     case 'Boards':
-	require_once __DIR__ . '/../app/views/tableros.php';
+	$tableroController->mostrarTableros();
 	break;
     case 'Personal':
 	require_once __DIR__ . '/../app/views/tablero-personal.php';

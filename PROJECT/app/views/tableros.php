@@ -1,68 +1,17 @@
-<?php
-session_start();
-
-// Inicializamos array de jugadores si no existe
-if (!isset($_SESSION['jugadores'])) {
-  $_SESSION['jugadores'] = [];
-}
-
-// Agregamos último jugador si viene de login
-if (isset($_SESSION['ultimo_jugador'])) {
-  $nombre = $_SESSION['ultimo_jugador'];
-  if (!in_array($nombre, $_SESSION['jugadores'])) {
-    $_SESSION['jugadores'][] = $nombre;
-  }
-  unset($_SESSION['ultimo_jugador']);
-}
-
-if(isset($_POST['finalizar_partida'])){
-    $_SESSION['jugadores'] = [];
-    header("Location: index.php?ruta=Ranking"); // Redirige a la página de resultados
-    exit;
-}
-
-$jugadores = $_SESSION['jugadores'];
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DraftoTux - Tableros</title>
+  <title>DraftoTux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css">
-  <style>
-    .tablero-card {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 10px;
-      background-size: cover;
-      border-radius: 12px;
-      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-      display: inline-block;
-      vertical-align: top;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/tablero.css">
 
-    .tablero-card .nombre-jugador {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-weight: bold;
-    }
 
-    .tablero-card .btn {
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      position: absolute;
-    }
-  </style>
+  
 </head>
 
 <body class="bg-dark">
