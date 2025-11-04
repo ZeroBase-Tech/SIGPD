@@ -1,27 +1,3 @@
-<?php
-/*session_start();
-
-// Crear array de jugadores si no existe
-if (!isset($_SESSION['jugadores'])) {
-  $_SESSION['jugadores'] = [];
-}
-
-// Si hay un último jugador que inició sesión, agregarlo al primer div vacío
-if (isset($_SESSION['ultimo_jugador'])) {
-  $agregado = false;
-  for ($i = 0; $i < 5; $i++) {
-    if (!isset($_SESSION['jugadores'][$i])) {
-      $_SESSION['jugadores'][$i] = $_SESSION['ultimo_jugador'];
-      $agregado = true;
-      break;
-    }
-  }
-  if ($agregado) {
-    unset($_SESSION['ultimo_jugador']); // Limpiar temporal
-  }
-}
-  */
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +5,8 @@ if (isset($_SESSION['ultimo_jugador'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draftotux</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 
@@ -46,9 +23,12 @@ if (isset($_SESSION['ultimo_jugador'])) {
         <?php
         for ($i = 0; $i < 5; $i++) {
           $nombre = $_SESSION['jugadores'][$i] ?? "Usuario " . ($i + 1);
-        ?>
-          <div class="jugador-card col-12 col-sm-6">
-            <p class="close-btn">X</p>
+          ?>
+          <div class="jugador-card col-12 col-sm-6 position-relative">
+            <a href="index.php?ruta=Jugadores&eliminar=<?= $i ?>" class="close-btn"
+              style="position:absolute;top:5px;right:10px;color:red;text-decoration:none;font-weight:bold;">
+              X
+            </a>
             <a href="index.php?ruta=LogIn">
               <div class="jugador-card2">
                 <img src="assets/img/tux.png">

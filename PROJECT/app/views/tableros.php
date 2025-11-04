@@ -79,7 +79,7 @@ $jugadores = $_SESSION['jugadores'];
       <p class="text-white">No hay jugadores activos.</p>
     <?php else: ?>
       <?php foreach ($jugadores as $index => $nombre): ?>
-        <div class="tablero-card" style="background-image: url('PROJECT/public/assets/img/Tablero.png');">
+        <div class="tablero-card" style="background-image: url('assets/img/Tablero.png');">
           <div class="nombre-jugador"><?= htmlspecialchars($nombre) ?></div>
           <a href="index.php?ruta=Personal&jugador=<?= $index ?>" class="btn btn-success">Ver</a>
         </div>

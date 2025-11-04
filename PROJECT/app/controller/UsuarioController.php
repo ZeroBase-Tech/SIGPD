@@ -42,12 +42,26 @@ public function login() {
         $resultado = $usuarioModel->verifyLogin($usuario, $password);
 
         if ($resultado) {
-    session_start();
-    $_SESSION['usuario_logeado'] = $resultado['usuario'];
-    $_SESSION['ultimo_jugador'] = $resultado['usuario']; 
-    header("Location: index.php?ruta=Jugadores");
-    exit;
-}
+                session_start();
+
+                // Crear array de jugadores si no existe
+                if (!isset($_SESSION['jugadores'])) {
+                    $_SESSION['jugadores'] = [];
+                }
+
+                // Verificar si ya está en la partida
+                if (in_array($resultado['usuario'], $_SESSION['jugadores'])) {
+                    $error = "El jugador ya está en la partida.";
+                } else {
+                    $_SESSION['usuario_logeado'] = $resultado['usuario'];
+                    $_SESSION['ultimo_jugador'] = $resultado['usuario']; 
+                    header("Location: index.php?ruta=Jugadores");
+                    exit;
+                }
+            } else {
+                $error = "Usuario o contraseña incorrectos.";
+            }
+
     }
 
     include __DIR__ . '/../views/inicio_sesion.php';

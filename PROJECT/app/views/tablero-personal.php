@@ -49,49 +49,47 @@ $nombre_jugador ="Test";// $jugadores[$jugador_index] ?? "Jugador " . ($jugador_
    
           <input type="radio" class="btn-check" name="dado" id="dado-arch" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-arch">
-            <img src="./../../public/assets/img/DadoArch.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoArch.png" class="img-fluid" style="width:70px;">
           </label>
 
-          
           <input type="radio" class="btn-check" name="dado" id="dado-vacio" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-vacio">
-            <img src="./../../public/assets/img/DadoVacio.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoVacio.png" class="img-fluid" style="width:70px;">
           </label>
 
-        
           <input type="radio" class="btn-check" name="dado" id="dado-verde" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-verde">
-            <img src="./../../public/assets/img/DadoVerde.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoVerde.png" class="img-fluid" style="width:70px;">
           </label>
 
         
           <input type="radio" class="btn-check" name="dado" id="dado-gris" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-gris">
-            <img src="./../../public/assets/img/DadoGris.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoGris.png" class="img-fluid" style="width:70px;">
           </label>
 
         
           <input type="radio" class="btn-check" name="dado" id="dado-terminal" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-terminal">
-            <img src="./../../public/assets/img/DadoTerminal.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoTerminal.png" class="img-fluid" style="width:70px;">
           </label>
 
          
           <input type="radio" class="btn-check" name="dado" id="dado-cafe" autocomplete="off">
           <label class="btn btn-outline-success p-1" for="dado-cafe">
-            <img src="./../../public/assets/img/DadoCafe.png" class="img-fluid" style="width:70px;">
+            <img src="assets/img/DadoCafe.png" class="img-fluid" style="width:70px;">
           </label>
         </div>
       </div>
 
 
         <div class="barra_inferior mt-3" style="position: relative; bottom: -30px;">
-            <img src="./../../public/assets/img/ficha-arch.png" class="ficha" id="ficha-arch" draggable="true">
-            <img src="./../../public/assets/img/ficha-debian.png" class="ficha" id="ficha-debian" draggable="true">
-            <img src="./../../public/assets/img/ficha-fedora.png" class="ficha" id="ficha-fedora" draggable="true">
-            <img src="./../../public/assets/img/ficha-mint.png" class="ficha" id="ficha-mint" draggable="true">
-            <img src="./../../public/assets/img/ficha-ubuntu.png" class="ficha" id="ficha-ubuntu" draggable="true">
-            <img src="./../../public/assets/img/ficha-suse.png" class="ficha" id="ficha-suse" draggable="true">
+            <img src="assets/img/ficha-arch.png" class="ficha" id="ficha-arch" draggable="true">
+            <img src="assets/img/ficha-debian.png" class="ficha" id="ficha-debian" draggable="true">
+            <img src="assets/img/ficha-fedora.png" class="ficha" id="ficha-fedora" draggable="true">
+            <img src="assets/img/ficha-mint.png" class="ficha" id="ficha-mint" draggable="true">
+            <img src="assets/img/ficha-ubuntu.png" class="ficha" id="ficha-ubuntu" draggable="true">
+            <img src="assets/img/ficha-suse.png" class="ficha" id="ficha-suse" draggable="true">
         </div>
 
         <div class="mt-4" style="position: relative; bottom: -20px;">

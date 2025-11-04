@@ -20,8 +20,13 @@ switch ($ruta) {
         require_once __DIR__ . '/../app/views/menu.php';
         break;
     case 'Jugadores':
-	require_once __DIR__ . '/../app/views/cantidad.php';
-        break;
+	$jugadorController = new JugadorController();
+        if (isset($_GET['eliminar'])) {
+        $jugadorController->eliminarJugador((int)$_GET['eliminar']);
+    } else {
+        $jugadorController->mostrarJugadores();
+    }
+    break;
     case 'Opciones':
 	require_once __DIR__ . '/../app/views/opciones.html';
 	break;
