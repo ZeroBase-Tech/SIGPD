@@ -7,6 +7,8 @@
     <title>DraftoTux - Tablero de <?= htmlspecialchars($nombre_jugador) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/tablero-personal.css">
+  
 </head>
 
 <body class="bg-dark">
@@ -18,7 +20,9 @@
       <h1 class="blinker-semibold" style="position: relative; top: 20px;" >DraftoTux</h1>
     </a>
     
-     
+     <div class="barra_puntos row">
+      <h4 class="mb-0 text-white">Puntos: <span class="puntos">0</span></h4>
+    </div>
         <div class="tablero">
             <div class="usuario"><?= htmlspecialchars($nombre_jugador) ?></div>
             <div id="Semejanza" class="casilla casilla_compuesta" style="top:40px; left:30px;"></div>
@@ -74,6 +78,7 @@
         </div>
       </div>
 
+      
 
         <div class="barra_inferior mt-3" style="position: relative; bottom: -30px;">
             <img src="assets/img/ficha-arch.png" class="ficha" id="ficha-arch" draggable="true">
@@ -93,9 +98,7 @@
       </div>
     </div>
 
-   
-
-    <script src="js/tablero.js"></script>
+  <script src="js/tablero.js"></script>
 
 </body>
 
