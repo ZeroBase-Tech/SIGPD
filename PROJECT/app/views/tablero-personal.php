@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-// Obtener el jugador que está viendo este tablero
-$jugador_index = 1;// $_GET['jugador'] ?? 0;
-$jugadores = $_SESSION['jugadores'] ?? [];
-$nombre_jugador ="Test";// $jugadores[$jugador_index] ?? "Jugador " . ($jugador_index + 1);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

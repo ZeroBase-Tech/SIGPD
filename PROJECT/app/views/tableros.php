@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DraftoTux</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/estilos.css">
-<link rel="stylesheet" href="css/tablero.css">
+  <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/tablero.css">
 
-
-  
 </head>
 
 <body class="bg-dark">
@@ -39,12 +37,12 @@
       <a class="btn btn-success fs-5" href="index.php?ruta=Jugadores">Atrás</a>
       <form method="post" style="display:inline-block; margin-left:10px;">
         <button type="submit" name="finalizar_partida" class="btn btn-danger fs-5">
-            Partida Finalizada
+          Partida Finalizada
         </button>
-    </form>
+      </form>
     </div>
   </div>
-    
+
 
 </body>
 

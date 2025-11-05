@@ -39,7 +39,7 @@ switch ($ruta) {
 	$tableroController->mostrarTableros();
 	break;
     case 'Personal':
-	require_once __DIR__ . '/../app/views/tablero-personal.php';
+	$tableroController->mostrarTablero();
 	break;
     case 'LogIn':
 	 $usuarioController->login();
