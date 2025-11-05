@@ -25,10 +25,7 @@
           $nombre = $_SESSION['jugadores'][$i] ?? "Usuario " . ($i + 1);
           ?>
           <div class="jugador-card col-12 col-sm-6 position-relative">
-            <a href="index.php?ruta=Jugadores&eliminar=<?= $i ?>" class="close-btn"
-              style="position:absolute;top:5px;right:10px;color:red;text-decoration:none;font-weight:bold;">
-              X
-            </a>
+            <a href="index.php?ruta=Jugadores&eliminar=<?= $i ?>" class="close-btn">X</a>
             <a href="index.php?ruta=LogIn">
               <div class="jugador-card2">
                 <img src="assets/img/tux.png">
