@@ -122,13 +122,42 @@ casillas.forEach((casilla) => {
 function calcularPuntos() {
   let total = 0;
 
-  // Casilla Semejanza
-  const sem = document.getElementById("Semejanza");
-  if (sem) {
-    const fichas = sem.querySelectorAll(".ficha").length;
-    // tabla de puntos: [0, 2, 4, 8, 12, 18, 24]
-    total += [0, 2, 4, 8, 12, 18, 24][fichas] || 0;
-  }
+   const casillas = document.querySelectorAll(".casilla");
+
+  casillas.forEach(casilla => {
+    const fichas = casilla.querySelectorAll(".ficha").length;
+
+    switch (casilla.id) {
+      case "Semejanza":
+        total += [0, 2, 4, 8, 12, 18, 24][fichas] || 0;
+        break;
+
+      case "Trio":
+        if (fichas === 3) total += 7;
+        break;
+
+      case "Rey":
+         total += 7;
+        break;
+
+      case "Diferencia":
+        total += [0, 1, 3, 6, 10, 15, 21][fichas] || 0;
+        break;
+
+      case "Amor":
+        const pares = Math.floor(fichas / 2);
+        total += pares * 5;;
+        break;
+
+      case "Isla":
+        total += 5;
+        break;
+
+      case "Rio":
+        total += fichas * 1;
+        break;
+    }
+  });
 
   return { total };
 }
