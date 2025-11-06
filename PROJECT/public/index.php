@@ -22,6 +22,9 @@ switch ($ruta) {
     case 'Home':
         require_once __DIR__ . '/../app/views/menu.php';
         break;
+    case 'Creditos':
+        require_once __DIR__ . '/../app/views/creditos.html';
+        break;
     case 'Jugadores':
         if (isset($_GET['eliminar'])) {
         $jugadorController->eliminarJugador((int)$_GET['eliminar']);

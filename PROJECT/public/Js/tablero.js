@@ -1,4 +1,5 @@
 
+
 function mostrarAlerta(mensaje) {
   const contenedor = document.getElementById("alert-container");
 
@@ -29,6 +30,8 @@ const limites = {
   Amor: 12,
   Rio: 12,
 };
+
+
 
 // Activar drag en todas las fichas
 const fichas = document.querySelectorAll(".ficha");
@@ -104,10 +107,36 @@ casillas.forEach((casilla) => {
       casilla.appendChild(ficha);
     }
 
+    actualizarPuntos();
+
     //Informacion de fondo
     console.log("Casilla: " + casilla.id);
     console.log("Limite: " + limite);
     console.log("Num Fichas: " + fichasEnCasilla);
     console.log("Ficha: " + ficha.id);
   });
+
+  
 });
+
+function calcularPuntos() {
+  let total = 0;
+
+  // Casilla Semejanza
+  const sem = document.getElementById("Semejanza");
+  if (sem) {
+    const fichas = sem.querySelectorAll(".ficha").length;
+    // tabla de puntos: [0, 2, 4, 8, 12, 18, 24]
+    total += [0, 2, 4, 8, 12, 18, 24][fichas] || 0;
+  }
+
+  return { total };
+}
+
+function actualizarPuntos() {
+  const { total } = calcularPuntos();
+  const puntosElemento = document.querySelector(".puntos");
+  if (puntosElemento) {
+    puntosElemento.textContent = total;
+  }
+}
