@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/../model/Usuario.php';
-require_once __DIR__ . '/../model/Database.php';
 
 class UsuarioController {
-    
     public function register() {
     $error = '';
     $success = '';
@@ -28,7 +26,7 @@ class UsuarioController {
         }
     }
 
-        include __DIR__ . '/../views/registro.php';
+        include __DIR__ . '/../views/Registro.php';
 }
 
 public function login() {
@@ -63,7 +61,7 @@ public function login() {
 
     }
 
-    include __DIR__ . '/../views/inicio_sesion.php';
+    include __DIR__ . '/../views/Inicio_Sesion.php';
 
 }
 

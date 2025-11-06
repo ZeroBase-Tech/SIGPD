@@ -23,7 +23,7 @@ class JugadorController {
     $jugadores = $_SESSION['jugadores'];
     $ultimo_jugador = $_SESSION['ultimo_jugador'] ?? null;
 
-    include __DIR__ . '/../views/cantidad.php';
+    include __DIR__ . '/../views/Cantidad.php';
 }
 
     public function eliminarJugador($index) {

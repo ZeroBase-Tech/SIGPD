@@ -1,5 +1,5 @@
 <?php
-require_once '../app/model/Database.php';
+require_once __DIR__ . '/DataBase.php';
 
 class Usuario {
     private $pdo;

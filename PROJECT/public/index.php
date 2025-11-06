@@ -1,56 +1,62 @@
 <?php
 session_start();
-require_once __DIR__ . '/../app/model/Database.php';
-require_once __DIR__ . '/../app/model/Usuario.php';
+
+#DELETEAFTERXAMPP
+$_SESSION['jugadores'] = [];
+$_SESSION['jugadores'][0] = 'TestAdmin';
+
 require_once __DIR__ . '/../app/controller/UsuarioController.php';
-require_once __DIR__ . '/../app/controller/JugadorController.php';
+$UsuarioController = new UsuarioController();
+
 require_once __DIR__ . '/../app/controller/TableroController.php';
+$TableroController = new TableroController();
 
+require_once __DIR__ . '/../app/controller/JugadorController.php';
+$JugadorController = new JugadorController();
 
-// Front Controller
+echo '<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">';
 
-$ruta = $_GET['ruta'] ?? 'Start'; 
-
-$usuarioController = new UsuarioController();
-$tableroController = new TableroController();
-$jugadorController = new JugadorController();
+$ruta = $_GET['ruta'] ?? 'Start';
 
 switch ($ruta) {
-    case 'Start':
-        require_once __DIR__ . '/../app/views/inicio.html';
-        break;
-    case 'Home':
-        require_once __DIR__ . '/../app/views/menu.php';
-        break;
-    case 'Creditos':
-        require_once __DIR__ . '/../app/views/creditos.html';
-        break;
-    case 'Jugadores':
-        if (isset($_GET['eliminar'])) {
-        $jugadorController->eliminarJugador((int)$_GET['eliminar']);
-    } else {
-        $jugadorController->mostrarJugadores();
-    }
-    break;
-    case 'Opciones':
-	require_once __DIR__ . '/../app/views/opciones.html';
+	#Views
+	case 'Start':
+		require_once __DIR__ . '/../app/views/Inicio.html';
 	break;
-    case 'Ranking':
-	require_once __DIR__ . '/../app/views/resultados.php';
+	case 'Menu':
+		require_once __DIR__ . '/../app/views/Menu.html';
 	break;
-    case 'Boards':
-	$tableroController->mostrarTableros();
+	case 'Jugadores':
+		if (isset($_GET['eliminar'])) {
+         $JugadorController->eliminarJugador((int)$_GET['eliminar']);
+		} else {
+		 $JugadorController->mostrarJugadores();
+		}
 	break;
-    case 'Personal':
-	$tableroController->mostrarTablero();
+	case 'Opciones':
+		require_once __DIR__ . '/../app/views/Opciones.html';
 	break;
-    case 'LogIn':
-	 $usuarioController->login();
+	case 'Ranking':
+		require_once __DIR__ . '/../app/views/Resultados.php';
 	break;
-    case 'SignIn':
-     $usuarioController->register();
+	case 'Creditos':
+		require_once __DIR__ . '/../app/views/Creditos.html';
 	break;
-    default:
-        echo '<h1>Error 404</h1>';
-        break;
+	case 'Tableros':
+		$TableroController->mostrarTableros();
+	break;
+	case 'Personal':
+		$TableroController->mostrarTablero();
+	break;
+	case 'LogIn':
+		$UsuarioController->login();
+	break;
+	case 'SignIn':
+		$UsuarioController->register();
+	break;
+	#Default
+	default:
+		echo '<h1>ERROR 404</h1>';
+	break;
 }
+?>

@@ -25,7 +25,7 @@ class TableroController {
         }
 
         $jugadores = $_SESSION['jugadores'];
-        include __DIR__ . '/../views/tableros.php';
+        include __DIR__ . '/../views/Tableros.php';
     }
 
     public function mostrarTablero() {
@@ -38,6 +38,6 @@ class TableroController {
             $nombre_jugador = "Jugador " . ($jugador_index + 1);
         }
 
-        include __DIR__ . '/../views/tablero-personal.php';
+        include __DIR__ . '/../views/Tablero-Personal.php';
     }
 }
