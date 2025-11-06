@@ -106,6 +106,8 @@ casillas.forEach((casilla) => {
       // Si viene de otra casilla, la movemos
       casilla.appendChild(ficha);
     }
+    const fichasEnCasillaFinal = casilla.querySelectorAll(".ficha").length;
+    console.log("Fichas reales en", casilla.id, ":", fichasEnCasillaFinal);
 
     actualizarPuntos();
 
@@ -137,7 +139,7 @@ function calcularPuntos() {
         break;
 
       case "Rey":
-         total += 7;
+        if (fichas === 1) total += 7;
         break;
 
       case "Diferencia":
@@ -150,7 +152,7 @@ function calcularPuntos() {
         break;
 
       case "Isla":
-        total += 5;
+        if (fichas === 1) total += 7;
         break;
 
       case "Rio":
