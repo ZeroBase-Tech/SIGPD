@@ -51,9 +51,10 @@ public function login() {
                     $error = "El jugador ya está en la partida.";
                 } else {
                     $_SESSION['usuario_logeado'] = $resultado['usuario'];
-                    $_SESSION['ultimo_jugador'] = $resultado['usuario']; 
-                    header("Location: index.php?ruta=Jugadores");
-                    exit;
+                    $_SESSION['ultimo_jugador'] = $resultado['usuario'];
+		    //Header no funciona porque index.php manda headers antes.
+                    //header("Location: index.php?ruta=Jugadores");
+		    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?ruta=Jugadores">';
                 }
             } else {
                 $error = "Usuario o contraseña incorrectos.";
@@ -64,5 +65,4 @@ public function login() {
     include __DIR__ . '/../views/Inicio_Sesion.php';
 
 }
-
 }

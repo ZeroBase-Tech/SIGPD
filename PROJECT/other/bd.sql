@@ -1,22 +1,21 @@
-DROP DATABASE IF EXISTS draftotux;
-CREATE DATABASE draftotux;
+CREATE DATABASE IF NOT EXISTS draftotux;
 USE draftotux;
 
-CREATE TABLE Jugador (
+CREATE TABLE IF NOT EXISTS Jugador (
     id_jugador INT PRIMARY KEY AUTO_INCREMENT,
     usuario VARCHAR(50) UNIQUE NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Partida (
+CREATE TABLE IF NOT EXISTS Partida (
     id_partida INT PRIMARY KEY AUTO_INCREMENT,
     fecha_inicio DATETIME DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('en curso', 'finalizada') DEFAULT 'en curso',
     modo ENUM('seguimiento', 'digital') DEFAULT 'seguimiento'
 );
 
-CREATE TABLE Tablero (
+CREATE TABLE IF NOT EXISTS Tablero (
     id_tablero INT PRIMARY KEY AUTO_INCREMENT,
     puntos INT DEFAULT 0,
     id_jugador INT NOT NULL,
@@ -25,7 +24,7 @@ CREATE TABLE Tablero (
     FOREIGN KEY (id_partida) REFERENCES Partida(id_partida)
 );
 
-CREATE TABLE Movimiento (
+CREATE TABLE IF NOT EXISTS Movimiento (
     id_movimiento INT PRIMARY KEY AUTO_INCREMENT,
     ronda INT NOT NULL,
     tipo ENUM('blanco', 'verde', 'violeta', 'naranja', 'azul', 'rojo') NOT NULL,
@@ -34,7 +33,7 @@ CREATE TABLE Movimiento (
     FOREIGN KEY (id_tablero) REFERENCES Tablero(id_tablero)
 );
 
-CREATE TABLE Juega(
+CREATE TABLE IF NOT EXISTS Juega(
     id_partida INT NOT NULL,
     id_jugador INT NOT NULL,
     PRIMARY KEY (id_partida, id_jugador),

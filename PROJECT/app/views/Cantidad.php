@@ -21,7 +21,7 @@
         ?>
           <div class="jugador-card col-12 col-sm-6">
             <a href="index.php?ruta=Jugadores&eliminar=<?= $i ?>" class="close-btn">X</a>
-            <a href="index.php?ruta=InicioSesion">
+            <a href="index.php?ruta=LogIn">
               <div class="jugador-card-divide">
                 <img src="assets/img/tux.png">
                 <div class="add-usuario">+</div>

@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-#DELETEAFTERXAMPP
-$_SESSION['jugadores'] = [];
-$_SESSION['jugadores'][0] = 'TestAdmin';
-
 require_once __DIR__ . '/../app/controller/UsuarioController.php';
 $UsuarioController = new UsuarioController();
 

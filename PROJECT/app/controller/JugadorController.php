@@ -31,7 +31,7 @@ class JugadorController {
             unset($_SESSION['jugadores'][$index]);
             $_SESSION['jugadores'] = array_values($_SESSION['jugadores']); // reindexar
         }
-        header("Location: index.php?ruta=Jugadores");
-        exit;
+        //header("Location: index.php?ruta=Jugadores");
+    	echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?ruta=Jugadores">';
     }
 }
