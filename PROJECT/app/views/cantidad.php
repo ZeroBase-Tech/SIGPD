@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draftotux</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"crossorigin="anonymous">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 
@@ -39,15 +38,15 @@
 
       <div class="row d-flex justify-content-center mb-3">
         <div class="col-5">
-          <button class="btn btn-outline-light">Modo Digital</button>
+          <button class="btn btn-outline-light disabled">Modo Digital</button>
         </div>
         <div class="col-5">
-          <a class="btn btn-outline-light" href="index.php?ruta=Boards">Modo Seguimiento</a>
+          <a class="btn btn-outline-light" href="index.php?ruta=CrearPartida&modo=seguimiento">Modo Seguimiento</a>
         </div>
       </div>
     </div>
     <div class="py-3">
-      <a class="btn btn-success w-100 fs-5" href="index.php?ruta=Home">Atrás</a>
+      <a class="btn btn-success shadow fs-5" href="index.php?ruta=Home">Atrás</a>
     </div>
   </div>
 </body>

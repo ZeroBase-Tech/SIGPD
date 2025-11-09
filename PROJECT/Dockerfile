@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y vim less unzip git curl \
+    && apt-get install -y nano less unzip git curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

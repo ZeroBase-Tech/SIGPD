@@ -2,46 +2,49 @@
 require_once __DIR__ . '/../model/Usuario.php';
 require_once __DIR__ . '/../model/Database.php';
 
-class UsuarioController {
-    
-    public function register() {
-    $error = '';
-    $success = '';
+class UsuarioController
+{
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $usuario = trim($_POST['usuario']);
-        $nombre = trim($_POST['nombre']);
-        $password = $_POST['password'];
-        $confirmar = $_POST['confirmar_password'];
+    public function register()
+    {
+        $error = '';
+        $success = '';
 
-        if ($password !== $confirmar) {
-            $error = "Las contraseñas no coinciden.";
-        } else {
-            $usuarioModel = new Usuario();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = trim($_POST['usuario']);
+            $nombre = trim($_POST['nombre']);
+            $password = $_POST['password'];
+            $confirmar = $_POST['confirmar_password'];
 
-            if ($usuarioModel->getUserByUsername($usuario)) {
-                $error = "El usuario ya existe.";
+            if ($password !== $confirmar) {
+                $error = "Las contraseñas no coinciden.";
             } else {
-                $usuarioModel->create($usuario, $nombre, $password);
-                $success = "Usuario registrado con éxito.";
+                $usuarioModel = new Usuario();
+
+                if ($usuarioModel->getUserByUsername($usuario)) {
+                    $error = "El usuario ya existe.";
+                } else {
+                    $usuarioModel->create($usuario, $nombre, $password);
+                    $success = "Usuario registrado con éxito.";
+                }
             }
         }
-    }
 
         include __DIR__ . '/../views/registro.php';
-}
+    }
 
-public function login() {
-    $error = '';
+    public function login()
+    {
+        $error = '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $usuario = trim($_POST['usuario']);
-        $password = $_POST['password'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = trim($_POST['usuario']);
+            $password = $_POST['password'];
 
-        $usuarioModel = new Usuario();
-        $resultado = $usuarioModel->verifyLogin($usuario, $password);
+            $usuarioModel = new Usuario();
+            $resultado = $usuarioModel->verifyLogin($usuario, $password);
 
-        if ($resultado) {
+            if ($resultado) {
 
                 // Crear array de jugadores si no existe
                 if (!isset($_SESSION['jugadores'])) {
@@ -53,7 +56,7 @@ public function login() {
                     $error = "El jugador ya está en la partida.";
                 } else {
                     $_SESSION['usuario_logeado'] = $resultado['usuario'];
-                    $_SESSION['ultimo_jugador'] = $resultado['usuario']; 
+                    $_SESSION['ultimo_jugador'] = $resultado['usuario'];
                     header("Location: index.php?ruta=Jugadores");
                     exit;
                 }
@@ -61,10 +64,10 @@ public function login() {
                 $error = "Usuario o contraseña incorrectos.";
             }
 
+        }
+
+        include __DIR__ . '/../views/inicio_sesion.php';
+
     }
-
-    include __DIR__ . '/../views/inicio_sesion.php';
-
-}
 
 }

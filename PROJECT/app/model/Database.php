@@ -28,7 +28,7 @@ class Database
         try {
             $this->conexion = new PDO($dsn, $user, $pass);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Conexión exitosa";
+        
         } catch (PDOException $e) {
             echo "Error al conectar" . $e->getMessage() . "";
             exit;

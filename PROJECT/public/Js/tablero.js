@@ -1,5 +1,3 @@
-
-
 function mostrarAlerta(mensaje) {
   const contenedor = document.getElementById("alert-container");
 
@@ -16,7 +14,6 @@ function mostrarAlerta(mensaje) {
   }, 2000);
 }
 
-
 let Diferencia = new Array(6);
 let Igualdad;
 let Trio;
@@ -30,8 +27,6 @@ const limites = {
   Amor: 12,
   Rio: 12,
 };
-
-
 
 // Activar drag en todas las fichas
 const fichas = document.querySelectorAll(".ficha");
@@ -58,7 +53,7 @@ casillas.forEach((casilla) => {
     if (fichasEnCasilla && casilla.id == "Diferencia") {
       for (let i = 0; i < Diferencia.length; i++) {
         if (Diferencia[i] == ficha.id) {
-          mostrarAlerta(`${ficha.id} ya fue colocado en la casilla`,"danger");
+          mostrarAlerta(`${ficha.id} ya fue colocado en la casilla`, "danger");
           return;
         }
       }
@@ -78,18 +73,27 @@ casillas.forEach((casilla) => {
     // Maximo numero de fichas en la casilla
     //Tipo de ficha incorrecto
     if (fichasEnCasilla >= limite) {
-      mostrarAlerta(`Esta casilla ya alcanzó su límite de ${limite} fichas!`, "danger");
+      mostrarAlerta(
+        `Esta casilla ya alcanzó su límite de ${limite} fichas!`,
+        "danger"
+      );
       return;
     }
     if (fichasEnCasilla && casilla.id == "Semejanza") {
       if (Igualdad != ficha.id) {
-       mostrarAlerta(`Solo ${Igualdad} pueden colocarse en esta castilla`, "danger");
+        mostrarAlerta(
+          `Solo ${Igualdad} pueden colocarse en esta castilla`,
+          "danger"
+        );
         return;
       }
     }
     if (fichasEnCasilla && casilla.id == "Trio") {
       if (Trio != ficha.id) {
-        mostrarAlerta(`Solo ${Trio} pueden colocarse en esta castilla`, "danger");
+        mostrarAlerta(
+          `Solo ${Trio} pueden colocarse en esta castilla`,
+          "danger"
+        );
         return;
       }
     }
@@ -110,55 +114,101 @@ casillas.forEach((casilla) => {
     console.log("Fichas reales en", casilla.id, ":", fichasEnCasillaFinal);
 
     actualizarPuntos();
-
     //Informacion de fondo
     console.log("Casilla: " + casilla.id);
     console.log("Limite: " + limite);
     console.log("Num Fichas: " + fichasEnCasilla);
     console.log("Ficha: " + ficha.id);
   });
-
-  
 });
 
 function calcularPuntos() {
   let total = 0;
 
-   const casillas = document.querySelectorAll(".casilla");
+  const casillas = document.querySelectorAll(".casilla");
 
-  casillas.forEach(casilla => {
-    const fichas = casilla.querySelectorAll(".ficha").length;
+  casillas.forEach((casilla) => {
+    const fichasNodo = casilla.querySelectorAll(".ficha"); // Lista de fichas en esta casilla
+    const cantidad = fichasNodo.length; // Cantidad de fichas
 
+    // Puntaje base según la casilla
     switch (casilla.id) {
       case "Semejanza":
-        total += [0, 2, 4, 8, 12, 18, 24][fichas] || 0;
+        total += [0, 2, 4, 8, 12, 18, 24][cantidad] || 0;
         break;
 
       case "Trio":
-        if (fichas === 3) total += 7;
+        if (cantidad === 3) total += 7;
         break;
 
       case "Rey":
-        if (fichas === 1) total += 7;
+        if (cantidad === 1) total += 7;
         break;
 
       case "Diferencia":
-        total += [0, 1, 3, 6, 10, 15, 21][fichas] || 0;
+        total += [0, 1, 3, 6, 10, 15, 21][cantidad] || 0;
         break;
 
       case "Amor":
-        const pares = Math.floor(fichas / 2);
-        total += pares * 5;;
+        let arch = 0,
+          ubuntu = 0,
+          mint = 0,
+          fedora = 0,
+          debian = 0,
+          suse = 0;
+        let puntosAmor = 0;
+
+        // Contamos cuántas fichas de cada tipo hay en Amor
+        fichasNodo.forEach((f) => {
+          const tipo = f.id.split("-")[1]; // ficha-arch → "arch"
+          switch (tipo) {
+            case "arch":
+              arch++;
+              break;
+            case "ubuntu":
+              ubuntu++;
+              break;
+            case "mint":
+              mint++;
+              break;
+            case "fedora":
+              fedora++;
+              break;
+            case "debian":
+              debian++;
+              break;
+            case "suse":
+              suse++;
+              break;
+          }
+        });
+
+        // Cada par (2, 4, 6...) del mismo tipo suma 5 puntos
+        [arch, ubuntu, mint, fedora, debian, suse].forEach((contador) => {
+          if (contador >= 2) {
+            const parejas = Math.floor(contador / 2); // 2→1, 3→1, 4→2, etc.
+            puntosAmor += parejas * 5;
+          }
+        });
+
+        total += puntosAmor;
         break;
 
       case "Isla":
-        if (fichas === 1) total += 7;
+        if (cantidad === 1) total += 7;
         break;
 
       case "Rio":
-        total += fichas * 1;
+        total += cantidad * 1;
         break;
     }
+
+    // 🔸 BONUS: cada ficha Arch en el tablero suma +1 extra
+    fichasNodo.forEach((f) => {
+      if (f.id.includes("ficha-arch")) {
+        total += 1;
+      }
+    });
   });
 
   return { total };
@@ -171,3 +221,9 @@ function actualizarPuntos() {
     puntosElemento.textContent = total;
   }
 }
+
+const form = document.querySelector("form");
+form.addEventListener("submit", () => {
+  const puntos = document.querySelector(".puntos").textContent;
+  document.getElementById("puntosInput").value = puntos;
+});

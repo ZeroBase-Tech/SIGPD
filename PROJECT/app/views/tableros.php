@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -28,18 +28,13 @@
       <?php foreach ($jugadores as $index => $nombre): ?>
         <div class="tablero-card" style="background-image: url('assets/img/Tablero.png');">
           <div class="nombre-jugador"><?= htmlspecialchars($nombre) ?></div>
-          <a href="index.php?ruta=Personal&jugador=<?= $index ?>" class="btn btn-success">Ver</a>
+          <a href="index.php?ruta=Personal&jugador=<?= $index ?>" class="btn shadow btn-success">Ver</a>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
 
     <div class="py-3 mt-4">
-      <a class="btn btn-success fs-5" href="index.php?ruta=Jugadores">Atrás</a>
-      <form method="post" style="display:inline-block; margin-left:10px;">
-        <button type="submit" name="finalizar_partida" class="btn btn-danger fs-5">
-          Partida Finalizada
-        </button>
-      </form>
+      <a class="btn btn-success shadow-lg fs-5" href="index.php?ruta=Jugadores">Atrás</a>
     </div>
   </div>
 

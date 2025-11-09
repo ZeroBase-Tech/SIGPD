@@ -1,24 +1,24 @@
 services:
-  draftotux_app:
+  draftotux:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: draftotux_app
+    container_name: draftotux_WP
     ports:
       - "80:80"
     depends_on:
       - database
 
   database:
-    image: mysql:8.0
-    container_name: draftotux_bd
+    image: mysql:8.0.23
+    container_name: draftotux_BD
     environment:
       MYSQL_ROOT_PASSWORD: Manzana@13
       MYSQL_DATABASE: draftotux
     ports:
       - "3306:3306"
     volumes:
-      - db-volume:/var/lib/mysql
+      - DB-Storage:/var/lib/mysql
       - ./other/bd.sql:/docker-entrypoint-initdb.d/bd.sql
 
   phpmyadmin:
@@ -32,7 +32,6 @@ services:
       PMA_HOST: database
       PMA_USER: root
       PMA_PASSWORD: Manzana@13
-      MYSQL_ROOT_PASSWORD: Manzana@13
 
 volumes:
-  db-volume:
+  DB-Storage:
