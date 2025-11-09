@@ -1,0 +1,25 @@
+services:
+  draftotux:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: DraftoTux-WP
+    ports:
+      - "8080:80"
+    depends_on:
+      - database
+
+  database:
+    image: mysql:8.0.23
+    container_name: DraftoTux-DB
+    environment:
+      MYSQL_ROOT_PASSWORD: Manzana@13
+      MYSQL_DATABASE: draftotux
+    ports:
+      - "3306:3306"
+    volumes:
+      - DB-Storage:/var/lib/mysql
+      - ./other/bd.sql:/docker-entrypoint-initdb.d/bd.sql
+
+volumes:
+  DB-Storage:
