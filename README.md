@@ -1,26 +1,34 @@
-Configuración de conexión a la base de datos
+## Configuración de conexión a la base de datos
 
-El proyecto incluye dos configuraciones de conexión a la base de datos: una para XAMPP y otra para Docker.
+El proyecto incluye dos configuraciones de conexión a la base de datos: una para XAMPP y otra para Docker.  
 Por defecto, el código está preparado para ejecutarse en XAMPP, pero puede cambiarse fácilmente para funcionar dentro de un entorno Docker Compose.
 
-Conexión para XAMPP (por defecto)
+---
+
+### Conexión para XAMPP (por defecto)
+
+```php
 define('SERVERNAME', '127.0.0.1'); // Host de MySQL en XAMPP
 define('USERNAME', 'root');         // Usuario de MySQL (por defecto 'root')
 define('PASSWORD', '');             // Contraseña (por defecto vacía)
 define('DBNAME', 'draftotux');      // Nombre de la base de datos
-
+```
 Esta configuración permite ejecutar el sistema desde un entorno local con Apache y MySQL instalados mediante XAMPP.
 
-Conexión para Docker
-Si se ejecuta el proyecto dentro del entorno de Docker Compose, solo se deben descomentar las siguientes líneas y comentar las anteriores:
+---
 
+### Conexión para Docker
+
+Si se ejecuta el proyecto dentro del entorno de Docker Compose, solo se deben descomentar las siguientes líneas y comentar las anteriores:
+```php
 //define('SERVERNAME', 'database'); // 'database' es el nombre del servicio MySQL en docker-compose
 //define('USERNAME', 'root');       // Usuario definido en docker-compose
 //define('PASSWORD', 'Manzana@13'); // Contraseña definida en docker-compose
 //define('DBNAME', 'draftotux');    // Nombre de la base de datos definido en docker-compose
-
+```
 Con esta configuración, la aplicación se conectará automáticamente al contenedor de base de datos MySQL creado por Docker.
 
+---
 
 # Draftux
 Una aplicacion web de seguimiento del juego de mesa Draftousaurus
