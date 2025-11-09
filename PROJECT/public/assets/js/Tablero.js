@@ -20,40 +20,46 @@ function calcularPuntos() {
    const casillas = document.querySelectorAll(".casilla");
 
   casillas.forEach(casilla => {
-    const fichas = casilla.querySelectorAll(".ficha").length;
+    const fichasEnCasilla = casilla.querySelectorAll(".ficha").length;
 
     switch (casilla.id) {
       case "Semejanza":
-        total += [0, 2, 4, 8, 12, 18, 24][fichas] || 0;
+        total += [0, 2, 4, 8, 12, 18, 24][fichasEnCasilla] || 0;
         break;
 
       case "Trio":
-        if (fichas === 3) total += 7;
+        if (fichasEnCasilla === 3) total += 7;
         break;
 
       case "Rey":
-        if (fichas === 1) total += 7;
+        if (fichasEnCasilla === 1) total += 7;
         break;
 
       case "Diferencia":
-        total += [0, 1, 3, 6, 10, 15, 21][fichas] || 0;
+        total += [0, 1, 3, 6, 10, 15, 21][fichasEnCasilla] || 0;
         break;
 
       case "Amor":
-        const pares = Math.floor(fichas / 2);
+        const pares = Math.floor(fichasEnCasilla / 2);
         total += pares * 5;;
         break;
 
       case "Isla":
-        if (fichas === 1) total += 7;
+        if (fichasEnCasilla === 1) total += 7;
         break;
 
       case "Rio":
-        total += fichas * 1;
+        total += fichasEnCasilla * 1;
         break;
     }
   });
+  const fichas = document.querySelectorAll(".ficha");
 
+  fichas.forEach(ficha => {
+   if (ficha.id.includes("ficha-arch-")){
+    total += 1;
+   };
+  });
   return { total };
 }
 
@@ -139,7 +145,7 @@ casillas.forEach((casilla) => {
 		const fichasEnCasillaFinal = casilla.querySelectorAll(".ficha").length;
 		console.log("Fichas reales en", casilla.id, ":", fichasEnCasillaFinal);
 		actualizarPuntos();
-		
+
 		//Informacion de Fondo
 		console.log("Casilla: " + casilla.id);
 		console.log("Limite: " + limite);

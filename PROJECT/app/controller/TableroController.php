@@ -1,5 +1,14 @@
 <?php
+
+require_once '../app/model/Tablero.php';
+require_once '../app/model/Partida.php';
+require_once '../app/model/Usuario.php';
+
 class TableroController {
+
+private Usuario $ModeloUsuario;
+public Partida $ModeloPartida;
+private Tablero $ModeloTablero;
 
     public function mostrarTableros() {
 
@@ -19,12 +28,31 @@ class TableroController {
 
         // Si se finaliza partida
         if (isset($_POST['finalizar_partida'])) {
+	    $_SESSION['Partida'] = [];
             $_SESSION['jugadores'] = [];
-            header("Location: index.php?ruta=Ranking");
-            exit;
+            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?ruta=Ranking">';
         }
 
         $jugadores = $_SESSION['jugadores'];
+
+	// Creando la partida en la base de datos.
+	$this->ModeloPartida = new Partida();
+	$PartidaID = $this->ModeloPartida->create();
+	$_SESSION['Partida'] = $PartidaID;
+	echo $PartidaID;
+	// Creando los tableros en la base de datos
+	$this->ModeloUsuario = new Usuario();
+	if (empty($jugadores)){
+
+	}else{
+	 forEach ($jugadores as $index => $nombre){
+          $id_jugador = $this->ModeloUsuario->getUserByUsername($nombre);
+
+	  $this->ModeloTablero = new Tablero();
+	  $this->ModeloTablero->create($id_jugador['id_jugador'], $_SESSION['Partida']);
+	 }
+	}
+
         include __DIR__ . '/../views/Tableros.php';
     }
 

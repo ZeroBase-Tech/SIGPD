@@ -19,20 +19,16 @@ $jugadores = $_SESSION['jugadores'];
     <?php if (empty($jugadores)): ?>
       <p class="text-white">No hay jugadores activos.</p>
     <?php else: ?>
-      <?php foreach ($jugadores as $index => $nombre): ?>
+      <?php foreach ($jugadores as $index => $id_jugador): ?>
         <div class="tablero-card" style="background-image: url('assets/img/Tablero.png');">
-          <div class="nombre-jugador"><?= htmlspecialchars($nombre) ?></div>
+          <div class="nombre-jugador"><?= htmlspecialchars($id_jugador) ?></div>
           <a href="index.php?ruta=Personal&jugador=<?= $index ?>" class="btn btn-success">Ver</a>
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
     <div class="py-3 mt-4">
-      <a class="btn btn-success fs-5" href="index.php?ruta=Jugadores">Atrás</a>
-      <form method="post" style="display:inline-block; margin-left:10px;">
-        <button type="submit" name="finalizar_partida" class="btn btn-danger fs-5">
-            Partida Finalizada
-        </button>
-    </form>
+      <a class="btn btn-success fs-5" href="index.php?ruta=MatchLeft">Atrás</a>
+      <a href="index.php?ruta=MatchEnd" class="btn btn-danger fs-5">Partida Finalizada</a>
     </div>
   </div>
 </body>

@@ -6,6 +6,8 @@ $UsuarioController = new UsuarioController();
 
 require_once __DIR__ . '/../app/controller/TableroController.php';
 $TableroController = new TableroController();
+$ModeloPartida = new Partida();
+
 
 require_once __DIR__ . '/../app/controller/JugadorController.php';
 $JugadorController = new JugadorController();
@@ -49,6 +51,15 @@ switch ($ruta) {
 	break;
 	case 'SignIn':
 		$UsuarioController->register();
+	break;
+	case 'MatchLeft':
+	 $_SESSION['Partida'] = [];
+	 require_once __DIR__ . '/../app/views/Cantidad.php';
+	break;
+	case 'MatchEnd':
+	 $ModeloPartida->endMatch($_SESSION['Partida']);
+	 $_SESSION['Partida'] = [];
+	 require_once __DIR__ . '/../app/views/Resultados.php';
 	break;
 	#Default
 	default:

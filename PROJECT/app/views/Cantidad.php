@@ -1,3 +1,7 @@
+<?php
+$_SESSION['Partida'] = [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

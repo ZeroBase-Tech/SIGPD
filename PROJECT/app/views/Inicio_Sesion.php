@@ -39,7 +39,7 @@ $error = $error ?? '';
       <div class="row mt-4">
         <a href="index.php?ruta=Jugadores" class="btn btn-outline-light col-5 text-start text-decoration-none fs-5">Atras</a>
 		<p class="col-2"></p>
-        <a href="index.php?ruta=Registro" class="btn btn-outline-light col-5 text-end text-decoration-none fs-5">Registrar</a>
+        <a href="index.php?ruta=SignIn" class="btn btn-outline-light col-5 text-end text-decoration-none fs-5">Registrar</a>
       </div>
     </div>
   </div>
