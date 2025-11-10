@@ -7,7 +7,7 @@ require_once __DIR__ . '/../app/controller/JugadorController.php';
 require_once __DIR__ . '/../app/controller/TableroController.php';
 require_once __DIR__ . '/../app/controller/PartidaController.php';
 
-echo '<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">';
+//echo '<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">';
 
 // Front Controller
 

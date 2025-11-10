@@ -1,14 +1,14 @@
 <?php
 
-//define('SERVERNAME', 'database'); // database es el nombre del servicio en docker-compose
-//define('USERNAME', 'root'); // Nombre de usuario definido en docker-compose
-//define('PASSWORD', 'Manzana@13'); // Contraseña definida en docker-compose
-//define('DBNAME', 'draftotux'); // Nombre de la base de datos definido en docker-compose
+define('SERVERNAME', 'database'); // database es el nombre del servicio en docker-compose
+define('USERNAME', 'root'); // Nombre de usuario definido en docker-compose
+define('PASSWORD', 'Manzana@13'); // Contraseña definida en docker-compose
+define('DBNAME', 'draftotux'); // Nombre de la base de datos definido en docker-compose
 
-define('SERVERNAME', '127.0.0.1'); // Host de MySQL en XAMPP
-define('USERNAME', 'root');         // Usuario de MySQL en XAMPP (por defecto 'root')
-define('PASSWORD', '');             // Contraseña de MySQL en XAMPP (por defecto vacía)
-define('DBNAME', 'draftotux');      // Nombre de tu base de datos
+//define('SERVERNAME', '127.0.0.1'); // Host de MySQL en XAMPP
+//define('USERNAME', 'root');         // Usuario de MySQL en XAMPP (por defecto 'root')
+//define('PASSWORD', '');             // Contraseña de MySQL en XAMPP (por defecto vacía)
+//define('DBNAME', 'draftotux');      // Nombre de tu base de datos
 
 class Database
 {

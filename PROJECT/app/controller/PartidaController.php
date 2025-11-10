@@ -12,7 +12,7 @@ class PartidaController
         $fecha_inicio = date('Y-m-d H:i:s');
         $estado = 'en curso';
 
-        $stmt = $conn->prepare("INSERT INTO partida (fecha_inicio, estado, modo) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO Partida (fecha_inicio, estado, modo) VALUES (?, ?, ?)");
         $stmt->execute([$fecha_inicio, $estado, $modo]);
 
         $_SESSION['id_partida'] = $conn->lastInsertId();
@@ -20,12 +20,12 @@ class PartidaController
         if (!empty($_SESSION['jugadores'])) {
             foreach ($_SESSION['jugadores'] as $usuarioJugador) {
                 // Buscar el id_jugador en la base de datos
-                $stmtJugador = $conn->prepare("SELECT id_jugador FROM jugador WHERE usuario = ?");
+                $stmtJugador = $conn->prepare("SELECT id_jugador FROM Jugador WHERE usuario = ?");
                 $stmtJugador->execute([$usuarioJugador]);
                 $id_jugador = $stmtJugador->fetchColumn();
 
                 if ($id_jugador) {
-                    $stmtJuega = $conn->prepare("INSERT INTO juega (id_partida, id_jugador) VALUES (?, ?)");
+                    $stmtJuega = $conn->prepare("INSERT INTO Juega (id_partida, id_jugador) VALUES (?, ?)");
                     $stmtJuega->execute([$_SESSION['id_partida'], $id_jugador]);
 
                     $stmtTablero = $conn->prepare("INSERT INTO Tablero (id_jugador, id_partida, puntos) VALUES (?, ?, 0)");

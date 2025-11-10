@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DraftoTux - Tablero de <?= htmlspecialchars($nombre_jugador) ?></title>
+  <link rel="icon" href="assets/img/tux.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="css/tablero-personal.css">
@@ -93,7 +94,7 @@
     <div id="alert-container" class="mt-4" style="position: absolute; top: 100px; z-index:9999; min-width: 250px;">
     </div>
   </div>
-  <script src="js/tablero.js"></script>
+  <script src="Js/tablero.js"></script>
 </body>
 
 </html>
